@@ -591,10 +591,14 @@ void ForceConsistencyConservation3(
 	_EXCEPTION();
 */
 	// Calculate C*r1 - r2
+//FIXME
+#if 0
 	char trans = 'n';
+#endif
 	int m = nCond;
 	int n = nCoeff;
 	int lda = m;
+#if 0
 	int incx = 1;
 	int incy = 1;
 	double posone = 1.0;
@@ -611,6 +615,7 @@ void ForceConsistencyConservation3(
 		&negone,
 		&(dRHS[nCoeff]),
 		&incy);
+#endif
 
 	// Solve the general system
 	int nrhs = 1;
@@ -646,6 +651,7 @@ void ForceConsistencyConservation3(
 	}
 
 	// Obtain coefficients
+#if 0
 	trans = 't';
 	dgemv_(
 		&trans,
@@ -659,6 +665,7 @@ void ForceConsistencyConservation3(
 		&posone,
 		&(dRHS[0]),
 		&incy);
+#endif
 
 	// Store coefficients in array
 	ix = 0;

@@ -997,7 +997,7 @@ int main(int argc, char** argv) {
 		CommandLineString(strOutputData, "out_data", "");
 		CommandLineString(strNColName, "ncol_name", "ncol");
 		CommandLineBool(fOutputDouble, "out_double");
-                CommandLineString(strOutputFormat, "out_format","Classic","[Classic|Offset64Bits|Netcdf4|Netcdf4Classic]");
+		CommandLineStringD(strOutputFormat, "out_format","Classic","[Classic|Offset64Bits|Netcdf4|Netcdf4Classic]");
 		CommandLineString(strPreserveVariables, "preserve", "");
 		CommandLineBool(fPreserveAll, "preserveall");
 		CommandLineDouble(dFillValueOverride, "fillvalue", 0.0);
