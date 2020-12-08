@@ -538,14 +538,10 @@ void ForceIntArrayConsistencyConservation(
 	_EXCEPTION();
 */
 	// Calculate C*r1 - r2
-//FIXME
-#if 0
 	char trans = 'n';
-#endif
 	int m = nCond;
 	int n = nCoeff;
 	int lda = m;
-#if 0
 	int incx = 1;
 	int incy = 1;
 	double posone = 1.0;
@@ -562,7 +558,6 @@ void ForceIntArrayConsistencyConservation(
 		&negone,
 		&(dRHS[nCoeff]),
 		&incy);
-#endif
 
 	// Solve the general system
 	int nrhs = 1;
@@ -598,8 +593,6 @@ void ForceIntArrayConsistencyConservation(
 	}
 
 	// Obtain coefficients
-//FIXME
-#if 0
 	trans = 't';
 	dgemv_(
 		&trans,
@@ -613,7 +606,6 @@ void ForceIntArrayConsistencyConservation(
 		&posone,
 		&(dRHS[0]),
 		&incy);
-#endif
 
 	// Store coefficients in array
 	ix = 0;

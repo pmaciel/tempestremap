@@ -33,7 +33,6 @@ add_library(TempestRemap SHARED
 	kdtree.cpp
 	ncvalues.cpp
 	netcdf.cpp
-	node_multimap_3d.h
 	triangle.cpp )
 
 target_link_libraries(TempestRemap PUBLIC netcdf::netcdf LAPACK::LAPACK)

@@ -1,5 +1,4 @@
-# - Find netCDF
-# Find the native netCDF includes and library
+# - Find netCDF includes and library, based on NETCDF_ROOT (CMake or environment variable).
 #
 #  NETCDF_INCLUDES  - where to find netcdf.h, etc
 #  NETCDF_LIBRARIES - Link these libraries when using netCDF
@@ -19,12 +18,12 @@
 #  find_package(NetCDF COMPONENTS CXX REQUIRED)
 #  target_link_libraries(myTarget PRIVATE netcdf::netcdf)
 
-find_path(NETCDF_INCLUDES netcdf.h HINTS NETCDF_ROOT NETCDF_DIR ENV NETCDF_ROOT NETCDF_DIR PATH_SUFFIXES "" "include")
+find_path(NETCDF_INCLUDES netcdf.h HINTS NETCDF_ROOT NETCDF_DIR ENV NETCDF_ROOT ENV NETCDF_DIR PATH_SUFFIXES "" "include")
 if (NETCDF_INCLUDES)
     set(NETCDF_INCLUDE_DIRS "${NETCDF_INCLUDES}")
 endif()
 
-find_library(NETCDF_LIBRARIES_C NAMES netcdf HINTS NETCDF_ROOT NETCDF_DIR ENV NETCDF_ROOT NETCDF_DIR PATH_SUFFIXES "" "lib")
+find_library(NETCDF_LIBRARIES_C NAMES netcdf HINTS NETCDF_ROOT NETCDF_DIR ENV NETCDF_ROOT ENV NETCDF_DIR PATH_SUFFIXES "" "lib")
 mark_as_advanced(NETCDF_LIBRARIES_C)
 
 set(NetCDF_has_interfaces "YES") # will be set to NO if we're missing any interfaces
@@ -50,13 +49,13 @@ if (NetCDF_FIND_COMPONENTS)
       NetCDF_check_interface(F77 netcdf.inc netcdff)
       NetCDF_check_interface(F90 netcdf.mod netcdff)
     elseif (component STREQUAL "C")
-      NetCDF_check_interface(C netcdf.h netcdff)
+      NetCDF_check_interface(C netcdf.h netcdf)
     elseif (component STREQUAL "CXX")
       NetCDF_check_interface(CXX netcdf netcdf_c++4)
     endif()
   endforeach()
 else()
-  NetCDF_check_interface(C netcdf.h netcdff)
+  NetCDF_check_interface(C netcdf.h netcdf)
 endif()
 
 list(REMOVE_DUPLICATES NetCDF_libs)
